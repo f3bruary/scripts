@@ -1,3 +1,5 @@
+<?php
+
 // Display the extra data in the order admin panel
 add_action( 'woocommerce_admin_order_data_after_order_details', 'display_order_data_in_admin' );
 function display_order_data_in_admin( $order ){  ?>
@@ -12,7 +14,6 @@ function display_order_data_in_admin( $order ){  ?>
             ?>
     </div>
 <?php }
------------------------------------------------------
 
 // Return Barcode For Track and Trace
 add_filter('wc_dymo_order_function', 'wpf_dymo_order_output',10,3);
@@ -128,3 +129,4 @@ Array
                 )
         )
 )
+?>

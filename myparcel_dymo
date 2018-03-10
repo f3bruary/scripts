@@ -1,0 +1,36 @@
+// Display the extra data in the order admin panel
+add_action( 'woocommerce_admin_order_data_after_order_details', 'display_order_data_in_admin' );
+function display_order_data_in_admin( $order ){  ?>
+    <div class="order_data_column">
+        <h4><?php _e( 'Extra Details', 'woocommerce' ); ?></h4>
+        <?php 
+            echo '<p><strong>' . __( 'Barcode' ) . '</p>';
+            $myparcel_array = $order->get_meta('_myparcel_shipments');
+            $final_array = array_values($myparcel_array);
+            echo $final_array[0]['tracktrace'];
+                                                   
+            ?>
+    </div>
+<?php }
+
+
+// Return Barcode For Track and Trace
+add_filter('wc_dymo_order_function', 'wpf_dymo_order_output',10,3);
+function wpf_dymo_order_output($order_id,$label,$object) {
+ 
+	if($label=='shipping' && $object=='TRACKTRACE') {
+		
+		//Get order from order ID
+		$order=wc_get_order($order_id);
+		
+		$order_data = $order->get_meta('_myparcel_shipments');
+        $final_array = array_values($order_data);
+		$order_track_trace = $final_array[0]['tracktrace'];
+		
+		//Return a list (string) of all product inside this order, make sure it's well formatted before printing.
+		return $order_track_trace;
+	} else {
+		//Return order_id if is not correct label and object
+		return '';
+	}
+}

@@ -34,3 +34,30 @@ function wpf_dymo_order_output($order_id,$label,$object) {
 		return '';
 	}
 }
+
+//Array Example
+Array
+(
+    [31040763] => Array
+        (
+            [shipment_id] => 31040763
+            [tracktrace] => 3SMYPA000000000
+            [shipment] => Array
+                (
+                    [barcode] => 3SMYPA000000000
+                    [pickup] => Array
+                        (
+                            [postal_code] => XXXAA
+                            [street] => STRAAT
+                            [city] => STAD
+                            [number] => XX
+                            [location_name] => Gamma
+                        )
+                    [options] => Array
+                        (
+                            [signature] => 0
+                            [delivery_date] => 2018-03-10 00:00:00
+                        )
+                )
+        )
+)

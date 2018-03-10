@@ -136,5 +136,7 @@ Array
                 )
         )
 )*/
-	
+
+
+//Ignore closing tag when inserting into functions
 ?>

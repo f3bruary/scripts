@@ -109,7 +109,6 @@ function display_order_data_in_admin( $order ){  ?>
     </div>
 <?php }
 
-/
 
 /*Array Example
 Array

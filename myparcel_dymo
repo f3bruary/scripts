@@ -12,7 +12,7 @@ function display_order_data_in_admin( $order ){  ?>
             ?>
     </div>
 <?php }
-
+-----------------------------------------------------
 
 // Return Barcode For Track and Trace
 add_filter('wc_dymo_order_function', 'wpf_dymo_order_output',10,3);
@@ -29,6 +29,73 @@ function wpf_dymo_order_output($order_id,$label,$object) {
 		
 		//Return a list (string) of all product inside this order, make sure it's well formatted before printing.
 		return $order_track_trace;
+	} else {
+		//Return order_id if is not correct label and object
+		return '';
+	}
+}
+
+add_filter('wc_dymo_order_function', 'wpf_dymo_order_output',10,3);
+function wpf_dymo_order_output($order_id,$label,$object) {
+ 
+	if($label=='shipping' && $object=='TRACKTRACE') {
+		
+		//Get order from order ID
+		$order=wc_get_order($order_id);
+		
+		$order_data = $order->get_meta('_myparcel_shipments');
+ 	        $final_array = array_values($order_data);
+		$order_track_trace = $final_array[0]['tracktrace'];
+		
+		//Return a list (string) of all product inside this order, make sure it's well formatted before printing.
+		return $order_track_trace;
+	} else {
+		//Return order_id if is not correct label and object
+		return '';
+	}
+}
+
+//Return Signature to Dymo
+add_filter('wc_dymo_order_function', 'wpf_dymo_order_output',10,3);
+function wpf_dymo_order_output($order_id,$label,$object) {
+ 
+	if($label=='shipping' && $object=='SIG_REQ') {
+		
+		//Get order from order ID
+		$order=wc_get_order($order_id);
+		
+		$order_data = $order->get_meta('_myparcel_shipments');
+                $final_array = array_values($order_data);
+		$order_signature_int = $final_array[0]['options']['signature'];
+		//Translate 1 or 0 to YES or NO
+		if($order_signature_int=='1') {
+			$final_sig="JA";
+		} else {
+			$final_sig="NEE";
+		}
+		//Return a list (string) of all product inside this order, make sure it's well formatted before printing.
+		return $final_sig;
+	} else {
+		//Return order_id if is not correct label and object
+		return '';
+	}
+}
+
+//Return Delivery Date to Dymo
+add_filter('wc_dymo_order_function', 'wpf_dymo_order_output',10,3);
+function wpf_dymo_order_output($order_id,$label,$object) {
+ 
+	if($label=='shipping' && $object=='DEL_DATE') {
+		
+		//Get order from order ID
+		$order=wc_get_order($order_id);
+		
+		$order_data = $order->get_meta('_myparcel_shipments');
+                $final_array = array_values($order_data);
+		$order_del_date = $final_array[0]['options']['delivery_date'];
+		
+		//Return a list (string) of all product inside this order, make sure it's well formatted before printing.
+		return $final_del_date;
 	} else {
 		//Return order_id if is not correct label and object
 		return '';

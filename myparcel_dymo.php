@@ -1,6 +1,7 @@
 <?php
 // Don't include opening tag when pasting in functions
-
+// Warning: You can only use the filter once ! 
+// If you need to return multiple object, you need to put all IF statements into one function.
 
 // Return Track/Trace to Dymo
 add_filter('wc_dymo_order_function', 'wpf_dymo_order_tracktrace_output',10,3);

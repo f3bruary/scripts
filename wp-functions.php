@@ -1,6 +1,19 @@
 <?php
 
 // Show Delivery Windows on Product Pages
+add_action( 'woocommerce_after_add_to_cart_button', 'show_shipping_cart', 2 );
+function show_shipping_cart() {
+
+    $product_classes = wp_get_post_terms( get_the_ID(), 'product_shipping_class' );
+
+    if ( $product_classes && ! is_wp_error ( $product_classes ) ){
+        $single_class = array_shift( $product_classes ); ?>
+
+        <p class="shipping_class_desc"><?php echo 'Delivery: '.$single_class->description; ?></p><?php
+        }
+}
+
+// Show Delivery Windows on Product Pages (ALT)
 function show_shipping_on_product_page() {
     $product = wc_get_product();
 

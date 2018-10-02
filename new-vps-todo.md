@@ -10,7 +10,7 @@ reboot
 
 ## Install Musthaves
 ```
-apt-get install vim tmux zsh host whoami htop sudo git ufw
+apt-get install vim tmux zsh host whoami htop sudo git ufw python-setuptools python-dev build-essential
 ```
 
 ## User Management
@@ -45,3 +45,11 @@ PermitEmptyPasswords no
 X11Forwarding no
 AllowUsers f3bruary
 ```
+
+## Other
+### Install oh-my-zsh
+`sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"`
+### Install Vundle
+`git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim`
+### Install Powerline
+`sudo pip install powerline-status`

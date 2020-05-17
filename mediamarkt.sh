@@ -7,8 +7,8 @@
 
 # Requires Pushover.net account (and you need to create an 'app' for curl)
 
-url=''			#Mediamarkt product URL
-apptoken=''		#Pushover App Token
+url=''			    #Mediamarkt product URL
+apptoken=''		    #Pushover App Token
 usertoken=''		#Pushover User Token
 productname=''		#Product name (or whatever you want the title to be)
 usualprice=''       #Usual price

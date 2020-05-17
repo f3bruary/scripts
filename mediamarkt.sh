@@ -11,12 +11,13 @@ url=''			#Mediamarkt product URL
 apptoken=''		#Pushover App Token
 usertoken=''		#Pushover User Token
 productname=''		#Product name (or whatever you want the title to be)
+usualprice=''     #Usual price
 
 sdtt --schemas Product --url $url -i | grep -A 1 "offers.price" -w | cut -d ' ' -f10 | tail -n 1 > ~/price.txt
 
 price=$(cat ~/price.txt)
 
-if [[ $price == 289 ]]
+if [[ $price == $usualprice ]]
 then
     curl -s --form-string "title=$productname" --form-string "token=$apptoken" --form-string "user=$usertoken" --form-string "message=Price Unchanged :(
     Current Price:€ $price" https://api.pushover.net/1/messages.json

@@ -7,10 +7,10 @@
 
 # Requires Pushover.net account (and you need to create an 'app' for curl)
 
-url=''			    #Mediamarkt product URL
-apptoken=''		    #Pushover App Token
-usertoken=''		#Pushover User Token
-productname=''		#Product name (or whatever you want the title to be)
+url=''              #Mediamarkt product URL
+apptoken=''         #Pushover App Token
+usertoken=''        #Pushover User Token
+productname=''      #Product name (or whatever you want the title to be)
 usualprice=''       #Usual price
 
 sdtt --schemas Product --url $url -i | grep -A 1 "offers.price" -w | cut -d ' ' -f10 | tail -n 1 > ~/price.txt
